@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <div t-name="DhtmlxGanttOtTemplate"  owl="1">
+
+        <h1>DhtmlxGanttOtTemplate</h1>
+        <div class="d-flex flex-row">
+            <!-- <input name="input1" t-att-value="state.input1" placeholder="Nb task"    style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
+            <input name="input2" t-att-value="state.input2" placeholder="Durée maxi" style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
+            <button class="btn btn-primary ms-1" style="width:50px"  t-on-click="OKclick"> OK </button> -->
+            <button class="btn" t-on-click="OKclickAnnee">Année</button>
+            <button class="btn" t-on-click="OKclickMois">Mois</button>
+            <button class="btn" t-on-click="OKclickSemaine">Semaine</button>
+            <button class="btn" t-on-click="OKclickJour">Jour</button>
+            <button class="btn" t-on-click="OKclickHeure">Heure</button>
+            <button class="btn" t-on-click="OKclickMarker">Marker</button>
+            <button class="btn" t-on-click="OKclickGoToDate">GoToDate</button>
+        </div>
+
+
+        <div id="gantt_here" style='width:99%; height:600px;'></div>
+
+        <div>
+            CTRL + Molette de la sours : Permet de zoomer et de-zoomer. 
+            Si une tâche est en dehors de la zone affichée, il faut cliquer dessus pour la remettre dans celle-ci.
+        </div>
+
+        <!-- <t t-foreach="props.items" t-as="item" t-key="item">
+            <div class="tree-item-wrapper">
+                <div 
+                    t-attf-class="list-group-item list-group-item-action d-flex justify-content-between align-items-center owl-tree-item"
+                >
+                    Tâche : <t t-esc="item.name"/> (<t t-esc="item.id"/>)
+                </div>
+            </div>
+        </t> -->
+    </div>
+
+</templates>

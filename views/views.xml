@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dhtmlx_gantt_ot_view" model="ir.ui.view">
+        <field name="name">dhtmlx_gantt_ot_view</field>
+        <field name="model">is.ordre.travail.line</field>
+        <field name="arch" type="xml">
+            <dhtmlx_gantt_ot></dhtmlx_gantt_ot>
+        </field>
+    </record>
+    <record id='dhtmlx_gantt_ot_action' model='ir.actions.act_window'>
+        <field name="name">Gantt</field>
+        <field name="res_model">is.ordre.travail.line</field>
+        <field name="view_mode">dhtmlx_gantt_ot,timeline,kanban,tree,form,calendar,pivot,graph,activity</field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="is_project_task_timeline_view" >
+        <field name="name">is_project_task_timeline_view</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <timeline 
+                    date_start="date_deadline" 
+                    date_stop="date_deadline" 
+                    default_group_by="project_id" 
+                    event_open_popup="true"
+                    zoomKey="ctrlKey"
+            >
+                    <field name="name"/> 
+                    <templates>
+                        <t t-name="timeline-item">
+                            <div class="o_project_timeline_item">
+                                <span name="name">
+                                        <t t-esc="record.name"/> (<t t-esc="record.date_deadline"/>)
+                                </span>
+                            </div>
+                        </t>
+                    </templates>
+            </timeline>
+        </field>
+    </record> -->
+    <menuitem id="dhtmlx_gantt_ot_menu" parent="mrp.menu_mrp_root" action="dhtmlx_gantt_ot_action" sequence="99"/>
+</odoo>
