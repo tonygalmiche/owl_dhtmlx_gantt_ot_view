@@ -3,7 +3,7 @@
 
     <div t-name="DhtmlxGanttOtTemplate"  owl="1">
 
-        <h1>DhtmlxGanttOtTemplate</h1>
+        <!-- <h1>DhtmlxGanttOtTemplate</h1> -->
         <div class="d-flex flex-row">
             <!-- <input name="input1" t-att-value="state.input1" placeholder="Nb task"    style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
             <input name="input2" t-att-value="state.input2" placeholder="Durée maxi" style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
@@ -13,8 +13,8 @@
             <button class="btn" t-on-click="OKclickSemaine">Semaine</button>
             <button class="btn" t-on-click="OKclickJour">Jour</button>
             <button class="btn" t-on-click="OKclickHeure">Heure</button>
-            <button class="btn" t-on-click="OKclickMarker">Marker</button>
-            <button class="btn" t-on-click="OKclickGoToDate">GoToDate</button>
+            <!-- <button class="btn" t-on-click="OKclickMarker">Marker</button>
+            <button class="btn" t-on-click="OKclickGoToDate">GoToDate</button> -->
         </div>
 
 
