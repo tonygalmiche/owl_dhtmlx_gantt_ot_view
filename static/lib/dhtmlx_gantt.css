@@ -1,0 +1,57 @@
+
+/*
+.gantt_cal_larea input, .gantt_cal_larea select, .gantt_cal_larea textarea {
+    color: black;
+    background-color: white;
+}
+div.gantt_cal_light .gantt_cal_ltitle {
+    background-color: green;
+}
+div.gantt_cal_light .gantt_cal_ltitle {
+    background-color: #f2f3f4;
+}
+
+
+
+.red .gantt_cell, .odd.red .gantt_cell, .red .gantt_task_cell, .odd.red .gantt_task_cell {
+    background-color: #FDE0E0;
+}
+
+.green .gantt_cell, .odd.green .gantt_cell, .green .gantt_task_cell, .odd.green .gantt_task_cell {
+    background-color: #BEE4BE;
+}
+
+*/
+
+
+
+.high {
+    border: 2px solid #d96c49;
+    color: #d96c49;
+    background: #d96c49;
+}
+
+.high .gantt_task_progress {
+    background: #db2536;
+}
+
+
+.low {
+    border: 2px solid #34c461;
+    color: #34c461;
+    background: #34c461;
+}
+
+.low .gantt_task_progress {
+    background: #23964d;
+}
+
+.medium {
+    border: 2px solid #6ba8e3;
+    color: #6ba8e3;
+    background: #6ba8e3;
+}
+
+.medium .gantt_task_progress {
+    background: #547dab;
+}
