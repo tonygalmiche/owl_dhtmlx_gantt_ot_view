@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models,fields
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil import tz
 
 class is_ordre_travail_line(models.Model):
@@ -35,8 +35,17 @@ class is_ordre_travail_line(models.Model):
             end_date_utc = line.heure_fin or datetime.now()
             LOCAL = tz.gettz('Europe/Paris')
             UTC   = tz.gettz('UTC')
+
+            #** Arrondir par pas de 30mn **************************************
+            minutes = 30*round(end_date_utc.minute / 30)
+            print(end_date_utc, end_date_utc.minute,minutes)
+            end_date_utc = end_date_utc.replace(minute=0)            # Suppression des minutes
+            end_date_utc = end_date_utc + timedelta(minutes=minutes) # Ajout des minutes arrondi par pas de 15mn
+            #******************************************************************
+
             end_date_local = end_date_utc.replace(tzinfo=UTC)
             end_date_local = end_date_local.astimezone(LOCAL)
+
             duration = line.reste or 8
             vals={
                 "id": line.id,

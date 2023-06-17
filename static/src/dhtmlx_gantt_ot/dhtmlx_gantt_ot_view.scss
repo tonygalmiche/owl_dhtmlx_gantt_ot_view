@@ -36,3 +36,11 @@
 .medium .gantt_task_progress {
     background: #547dab;
 }
+
+.gantt_task_cell.week_end {
+    background-color: #e8e8e8;
+}
+
+.gantt_task_row.gantt_selected .gantt_task_cell.week_end {
+    background-color: #e0e0dd !important;
+}

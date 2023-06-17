@@ -47,6 +47,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             gantt.i18n.setLocale("fr");
 
             gantt.config.duration_unit = "hour";//an hour
+            //gantt.config.duration_unit = "minute";//an hour
             gantt.config.duration_step = 1; //so if task.duration = 2 and step=3, the task will long 6 hours
 
 
@@ -133,7 +134,8 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         min_column_width:80,
                         scales:[
                             {unit: "day" , step: 1, format: "%D %d %F %Y"}, /* https://docs.dhtmlx.com/gantt/desktop__date_format.html */
-                            {unit: "hour", step: 1, format: "%HH"}
+                            {unit: "hour", step: 1, format: "%HH"},
+                            {unit: "minute", step: 30, format: "%i"},
                         ]
                     },
                     {
@@ -141,8 +143,9 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         scale_height: 45,
                         min_column_width:30,
                         scales:[
-                            {unit: "day" , step: 1, format: "%D %d %F %Y"}, /* https://docs.dhtmlx.com/gantt/desktop__date_format.html */
-                            {unit: "hour", step: 2, format: "%HH"}
+                            {unit: "day"   , step: 1, format: "%D %d %F %Y"}, /* https://docs.dhtmlx.com/gantt/desktop__date_format.html */
+                            {unit: "hour"  , step: 1, format: "%HH"},
+                            {unit: "minute", step: 30, format: "%i"},
                         ]
                     },
                     {
@@ -152,6 +155,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         scales:[
                             {unit: "week", format: "%F %Y S%W"},
                             {unit: "day", format: "%d"},
+                            {unit: "hour", step: 8, format: " "},
                         ]
                     },
                     {
@@ -161,6 +165,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         scales:[
                             {unit: "month", format: "%F %Y"},
                             {unit: "week", format: "S%W"},
+                            {unit: "day", format: "%d"},
                         ]
                     },
                     {
@@ -237,9 +242,59 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             };
     
 
+            gantt.config.start_date = new Date(2023, 6, 17);
+
+
+
+            // function showAll() {
+            //     gantt.ignore_time = null;
+            //     gantt.render();
+            // }
+        
+            // function hideWeekEnds() {
+            //     gantt.ignore_time = function (date) {
+            //         return !gantt.isWorkTime(date, "day");
+            //     };
+            //     gantt.render();
+            // }
+        
+            // function hideNotWorkingTime() {
+            //     gantt.ignore_time = function (date) {
+            //         return !gantt.isWorkTime(date);
+            //     };
+            //     gantt.render();
+            // }
+
+
+
+            //TODO : L'affichage des heures de femeyure entriaine obligairement le recalcul de la loguner de la tahce => Ne pas activer
+            //gantt.config.work_time = true;
+            //gantt.config.skip_off_time = true;  => Uniquement dans la version pro
+            //gantt.setWorkTime({ hours:["8:00-12:00"] });
+            //gantt.setWorkTime({ hours:["13:30-17:30"] });
+            //gantt.setWorkTime({date:new Date(2023,3,19), hours:false});
+
+            //TODO : Sans cette fonction, les heures de fermneure n'apparaiissent pas
+            // gantt.templates.timeline_cell_class = function (task, date) {
+            //     if (!gantt.isWorkTime({ date: date, task: task }))
+            //         return "week_end";
+            //     return "";
+            // };
+
+
+            // gantt.ignore_time = function (date) {
+            //     return !gantt.isWorkTime(date, "day");
+            // };
+
+
 
 
             gantt.init("gantt_here");
+
+
+            console.log(gantt.getWorkHours(new Date(2033,3,20)));
+
+
             this.renderDhtmlxGantt();
         }
 
@@ -295,9 +350,10 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                 links: links,
             });
             gantt.message({
-                text: "Ceci est un autre message" ,
+                text: "Ceci est un autre message (test)" ,
                 expire: 2000
             });
+
 
 
 
