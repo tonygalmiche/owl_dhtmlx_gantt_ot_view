@@ -131,27 +131,17 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                     {
                         name:"hour",
                         scale_height: 45,
-                        min_column_width:80,
+                        min_column_width:15,
                         scales:[
                             {unit: "day" , step: 1, format: "%D %d %F %Y"}, /* https://docs.dhtmlx.com/gantt/desktop__date_format.html */
                             {unit: "hour", step: 1, format: "%HH"},
-                            {unit: "minute", step: 30, format: "%i"},
+                            {unit: "minute", step: 30, format: " "},
                         ]
                     },
                     {
                         name:"day",
                         scale_height: 45,
-                        min_column_width:30,
-                        scales:[
-                            {unit: "day"   , step: 1, format: "%D %d %F %Y"}, /* https://docs.dhtmlx.com/gantt/desktop__date_format.html */
-                            {unit: "hour"  , step: 1, format: "%HH"},
-                            {unit: "minute", step: 30, format: "%i"},
-                        ]
-                    },
-                    {
-                        name:"week",
-                        scale_height: 45,
-                        min_column_width:25,
+                        min_column_width:15,
                         scales:[
                             {unit: "week", format: "%F %Y S%W"},
                             {unit: "day", format: "%d"},
@@ -159,9 +149,19 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         ]
                     },
                     {
-                        name:"month",
+                        name:"week",
                         scale_height: 45,
                         min_column_width:30,
+                        scales:[
+                            {unit: "month", format: "%F %Y"},
+                            {unit: "week", format: "S%W"},
+                            {unit: "day", format: "%D"},
+                        ]
+                    },
+                    {
+                        name:"month",
+                        scale_height: 45,
+                        min_column_width:20,
                         scales:[
                             {unit: "month", format: "%F %Y"},
                             {unit: "week", format: "S%W"},
@@ -171,10 +171,11 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                     {
                         name:"year",
                         scale_height: 45,
-                        min_column_width: 35,
+                        min_column_width: 20,
                         scales:[
                             {unit: "year" , step: 1, format: "%Y"},
                             {unit: "month", step: 1, format: "%M"},
+                            {unit: "day"  , step: 7, format: "%d"},
                         ]
                     }
                 ],
@@ -267,14 +268,15 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
 
 
 
-            //TODO : L'affichage des heures de femeyure entriaine obligairement le recalcul de la loguner de la tahce => Ne pas activer
-            //gantt.config.work_time = true;
-            //gantt.config.skip_off_time = true;  => Uniquement dans la version pro
-            //gantt.setWorkTime({ hours:["8:00-12:00"] });
-            //gantt.setWorkTime({ hours:["13:30-17:30"] });
-            //gantt.setWorkTime({date:new Date(2023,3,19), hours:false});
+            // //TODO : L'affichage des heures de femeyure entriaine obligairement le recalcul de la loguner de la tahce => Ne pas activer
+            // //TODO : Cette fonction en affichant toute l'année charge le CPU à 100% => Ne pas activer
+            // gantt.config.work_time = true;
+            // //gantt.config.skip_off_time = true;  => Uniquement dans la version pro
+            // gantt.setWorkTime({ hours:["8:00-12:00"] });
+            // gantt.setWorkTime({ hours:["13:30-17:30"] });
+            // gantt.setWorkTime({date:new Date(2023,3,19), hours:false});
 
-            //TODO : Sans cette fonction, les heures de fermneure n'apparaiissent pas
+            // //TODO : Sans cette fonction, les heures de fermneure n'apparaiissent pas
             // gantt.templates.timeline_cell_class = function (task, date) {
             //     if (!gantt.isWorkTime({ date: date, task: task }))
             //         return "week_end";
@@ -282,9 +284,9 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             // };
 
 
-            // gantt.ignore_time = function (date) {
-            //     return !gantt.isWorkTime(date, "day");
-            // };
+            gantt.ignore_time = function (date) {
+                return !gantt.isWorkTime(date, "day");
+            };
 
 
 

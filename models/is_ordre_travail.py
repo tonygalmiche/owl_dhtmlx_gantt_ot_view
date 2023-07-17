@@ -7,7 +7,7 @@ class is_ordre_travail_line(models.Model):
     _inherit = "is.ordre.travail.line"
 
     def get_dhtmlx(self, domain=[]):
-        lines=self.env['is.ordre.travail.line'].search(domain, order="ordre_id,sequence", limit=500)
+        lines=self.env['is.ordre.travail.line'].search(domain, order="ordre_id,sequence", limit=2000)
 
         # #** Ajout des ordres de production **********************************
         res=[]
@@ -38,7 +38,7 @@ class is_ordre_travail_line(models.Model):
 
             #** Arrondir par pas de 30mn **************************************
             minutes = 30*round(end_date_utc.minute / 30)
-            print(end_date_utc, end_date_utc.minute,minutes)
+            #print(end_date_utc, end_date_utc.minute,minutes)
             end_date_utc = end_date_utc.replace(minute=0)            # Suppression des minutes
             end_date_utc = end_date_utc + timedelta(minutes=minutes) # Ajout des minutes arrondi par pas de 15mn
             #******************************************************************
@@ -46,7 +46,8 @@ class is_ordre_travail_line(models.Model):
             end_date_local = end_date_utc.replace(tzinfo=UTC)
             end_date_local = end_date_local.astimezone(LOCAL)
 
-            duration = line.reste or 8
+            #duration = line.reste or 8
+            duration = line.duree_reelle or 4
             vals={
                 "id": line.id,
                 "text": line.workcenter_id.name,
@@ -60,7 +61,7 @@ class is_ordre_travail_line(models.Model):
             }
             res.append(vals)
             #print(line.id,line.heure_fin, end_date_utc, end_date)
-            print(line.id, line.heure_fin, end_date_utc, end_date_local)
+            #print(line.id, line.heure_fin, end_date_utc, end_date_local)
         #**********************************************************************
 
 
