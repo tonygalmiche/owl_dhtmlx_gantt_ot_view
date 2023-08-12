@@ -89,7 +89,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
 
 
 
-            gantt.config.grid_width = 620;
+            gantt.config.grid_width = 300;
             gantt.config.add_column = false;
             gantt.templates.grid_row_class = function (start_date, end_date, item) {
                 if (item.progress == 0) return "red";
@@ -102,8 +102,10 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
 
             //** Configuration des colonnes des tâches
             gantt.config.columns = [
-                {name: "text", label: "Tâche", tree: true, width: 260},
-                {name: "start_date", label: "Début", tree: true, width: 160},
+                {name: "text", label: "Tâche", tree: true, width: 300},
+                //{name: "start_date", label: "Début", tree: true, width: 160},
+
+                /*
                 {
                     name: "progress", label: "%", width: 80, align: "center",
                     template: function (item) {
@@ -114,6 +116,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                         return Math.round(item.progress * 100) + "%";
                     }
                 },
+                */
                 // {
                 //     name: "assigned", label: "Assigné à", align: "center", width: 160,
                 //     // template: function (item) {
@@ -121,7 +124,7 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                 //     //     return item.users.join(", ");
                 //     // }
                 // },
-                {name: "duration", label: "Durée", tree: true, width: 120},
+                //{name: "duration", label: "Durée", tree: true, width: 120},
             ];
 
 
@@ -188,10 +191,10 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             gantt.ext.zoom.init(zoomConfig);
 
 
-            gantt.message({
-                text: "Ceci est un message" ,
-                expire: 2000
-            });
+            // gantt.message({
+            //     text: "Ceci est un message" ,
+            //     expire: 2000
+            // });
 
 
             gantt.config.sort = true;
@@ -218,11 +221,13 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
 
             /* Text de l'infobulle de la task */
             gantt.templates.tooltip_text = function(start,end,task){
-                return "<b>Tâche:</b> "+task.text+
-                "<br/><b>Début:</b> "+ gantt.templates.tooltip_date_format(start)+ 
-                "<br/><b>Fin:</b> "+gantt.templates.tooltip_date_format(end)+
-                "<br/>Durée:"+task.duration+
-                "<br/><div style='color:red'>Autre:"+task.infobulle+"</div>";
+                var infobulle=""+
+                    //"<b>Opération:</b> "+task.text+
+                    //"<br/><b>Début:</b> "+ gantt.templates.tooltip_date_format(start)+ 
+                    //"<br/><b>Fin:</b> "+gantt.templates.tooltip_date_format(end)+
+                    //"<br/>Durée:"+task.duration+
+                    "<div style='background-color:WhiteSmoke'>"+task.infobulle+"</div>";
+                return infobulle
             };
 
             //Met une couleur sur les task en fonction de la priority
@@ -351,10 +356,10 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
                 data : data,
                 links: links,
             });
-            gantt.message({
-                text: "Ceci est un autre message (test)" ,
-                expire: 2000
-            });
+            // gantt.message({
+            //     text: "Ceci est un autre message (test)" ,
+            //     expire: 2000
+            // });
 
 
 
@@ -494,6 +499,21 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             });
         }
     
+        clickRepli(ev) {
+            gantt.eachTask(function(task2close){
+                if (task2close.$level == 0) { //is a project, not a task
+                    gantt.close(task2close.id);
+                }
+            });
+        }
+    
+        clickDepli(ev) {
+            gantt.eachTask(function(task2open){
+                if (task2open.$level == 0) { //is a project, not a task
+                    gantt.open(task2open.id);
+                }
+            });
+        }
     
         OKclickAnnee(ev) {
             gantt.ext.zoom.setLevel("year");

@@ -8,6 +8,8 @@
             <!-- <input name="input1" t-att-value="state.input1" placeholder="Nb task"    style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
             <input name="input2" t-att-value="state.input2" placeholder="Durée maxi" style="width:100px" t-on-change="onChangeInput" type="text" class="form-control ms-2"/>
             <button class="btn btn-primary ms-1" style="width:50px"  t-on-click="OKclick"> OK </button> -->
+            <!-- <button class="btn" t-on-click="clickDepli">Dépli</button>
+            <button class="btn" t-on-click="clickRepli">Repli</button> -->
             <button class="btn" t-on-click="OKclickAnnee">Année</button>
             <button class="btn" t-on-click="OKclickMois">Mois</button>
             <button class="btn" t-on-click="OKclickSemaine">Semaine</button>

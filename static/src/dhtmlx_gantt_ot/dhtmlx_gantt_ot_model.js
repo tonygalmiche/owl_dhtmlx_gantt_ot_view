@@ -46,9 +46,26 @@ odoo.define("DhtmlxGanttOtModel", function (require) {
             // });
 
 
+            //console.log("this=",this);
+            //console.log(this.domain);
+            //console.log(this.loadParams);
+            console.log("context=",this.loadParams.context); //context des filtres dans la vue de recherche
+            var vue_gantt="get_dhtmlx"
+
+            console.log("this.loadParams.context.vue_gantt=",this.loadParams.context.vue_gantt); 
+
+
+
+            if (this.loadParams.context.vue_gantt){
+                var vue_gantt="get_dhtmlx2"
+            }
+            console.log("vue_gantt=",vue_gantt); 
+
+
+
             return this._rpc({
                 model: model,
-                method: 'get_dhtmlx',
+                method: vue_gantt,
                 args: [1],
 
                 //args: [JSON.parse(this.value).move_id, id],
