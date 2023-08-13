@@ -30,7 +30,8 @@ class is_ordre_travail_line(models.Model):
             infobulle_list.append("<b>Article</b>             : %s"%(production.product_id.name))
             infobulle_list.append("<b>Commande</b>            : %s"%(production.is_sale_order_id.name))
             infobulle_list.append("<b>Référence client</b>    : %s"%(production.is_client_order_ref))
-            infobulle_list.append("<b>Date client</b>         : %s"%(production.is_date_prevue.strftime('%d/%m/%y')))
+            if production.is_date_prevue:
+                infobulle_list.append("<b>Date client</b>         : %s"%(production.is_date_prevue.strftime('%d/%m/%y')))
             infobulle_list.append("<b>Date planifiée début</b>: %s"%(production.is_date_planifiee.strftime('%d/%m/%y')))
             infobulle_list.append("<b>Date planifiée fin</b>  : %s"%(production.is_date_planifiee_fin.strftime('%d/%m/%y')))
 
