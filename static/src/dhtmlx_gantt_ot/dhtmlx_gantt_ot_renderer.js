@@ -205,14 +205,14 @@ odoo.define("DhtmlxGanttOtRenderer", function (require) {
             const formatter = gantt.ext.formatters.durationFormatter({
                 format: ["day"]
             });
-            gantt.templates.leftside_text = function(start, end, task){
-                return formatter.format(task.duration);
-            };
+            // gantt.templates.leftside_text = function(start, end, task){
+            //     return formatter.format(task.duration);
+            // };
 
             /* Text à droite de la task */
-            gantt.templates.rightside_text = function(start, end, task){
-                return "ID: #" + task.id;
-            };
+            // gantt.templates.rightside_text = function(start, end, task){
+            //     return "ID: #" + task.id;
+            // };
 
             /* Text de progression de la task */
             gantt.templates.progress_text=function(start, end, task){
